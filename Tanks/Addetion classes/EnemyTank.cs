@@ -7,6 +7,7 @@ namespace Tanks
     class EnemyTank : IMove, ITeleportation
     {
         EnemyTankImage tankImg = new EnemyTankImage();
+
         Image img;
 
         static Random random;
@@ -47,21 +48,63 @@ namespace Tanks
 
         public Image Img { get => img; }
 
-        public EnemyTank(int fieldSize)
+        public EnemyTank(int fieldSize, int x, int y)
         {
             this.fieldSize = fieldSize;
 
             random = new Random();
 
-            img = tankImg.TankImageUp;
+            //img = tankImg.TankImageUp;
 
-            directX = 0;
-            directY = 1;
+            ChooseDiractionForTanks();
 
             ChooseImageDiraction();
 
-            coordinateX = 80;
-            coordinateY = 80;
+            coordinateX = x;
+            coordinateY = y;
+        }
+
+        public void ChooseDiractionForTanks()
+        {
+            //if (random.Next(0, 5000) < 2500)
+            //{
+            //    DirectX = 0;
+
+            //    while (DirectY == 0)
+            //    {
+            //        DirectY = random.Next(-1, 2);
+            //    }
+            //}
+            //else
+            //{
+            //    DirectY = 0;
+
+            //    while (DirectX == 0)
+            //    {
+            //        DirectX = random.Next(-1, 2);
+            //    }
+            //}
+
+            if (random.Next(5000) < 2500)
+            {
+                DirectY = 0;
+            loop:
+                DirectX = random.Next(-1, 2);
+                if (DirectX == 0)
+                {
+                    goto loop;
+                }  
+            }
+            else
+            {
+                DirectX = 0;
+            loop:
+                DirectY = random.Next(-1, 2);
+                if (DirectY == 0)
+                {
+                    goto loop;
+                }
+            }
         }
 
         public void Move()
@@ -128,11 +171,11 @@ namespace Tanks
 
         public void ChooseImageDiraction()
         {
-            if(DirectX == 1)
+            if (DirectX == 1)
             {
                 img = tankImg.TankImageRight;
             }
-            if(DirectX == -1)
+            if (DirectX == -1)
             {
                 img = tankImg.TankImageLeft;
             }
