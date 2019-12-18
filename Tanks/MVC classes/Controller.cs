@@ -15,12 +15,12 @@ namespace Tanks
         public ControllerMainForm() : this(450) { }
         public ControllerMainForm(int fieldSize) : this(fieldSize, 5) { }
         public ControllerMainForm(int fieldSize, int tanksAmount) : this(fieldSize, tanksAmount, 5) { }
-        public ControllerMainForm(int fieldSize, int tanksAmount, int applesAmount) : this(fieldSize, tanksAmount, applesAmount, 30) { }
-        public ControllerMainForm(int fieldSize, int tanksAmount, int applesAmount, int gameSpeed)
+        public ControllerMainForm(int fieldSize, int tanksAmount, int starsAmount) : this(fieldSize, tanksAmount, starsAmount, 30) { }
+        public ControllerMainForm(int fieldSize, int tanksAmount, int starsAmount, int gameSpeed)
         {
             InitializeComponent();
 
-            model = new Model(fieldSize, tanksAmount, applesAmount, gameSpeed);
+            model = new Model(fieldSize, tanksAmount, starsAmount, gameSpeed);
 
             view = new View(model);
             this.Controls.Add(view);

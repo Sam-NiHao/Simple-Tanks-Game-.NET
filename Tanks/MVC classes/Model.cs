@@ -9,7 +9,7 @@ namespace Tanks
     {
         Random random;
 
-        int fieldSize, tanksAmount, applesAmount;
+        int fieldSize, tanksAmount, starsAmount;
         public int gameSpeed { get; set; }
 
         public GameStatus gameStatus;
@@ -17,24 +17,55 @@ namespace Tanks
         List<EnemyTank> enemyTanks;
         internal List<EnemyTank> EnemyTanks { get => enemyTanks; }
 
+        List<Star> stars;
+        internal List<Star> Stars { get => stars; }
+
         public Wall wall { get; set; }
 
-        public Model(int fieldSize, int tanksAmount, int applesAmount, int gameSpeed)
+        public Model(int fieldSize, int tanksAmount, int starsAmount, int gameSpeed)
         {
             random = new Random();
 
             enemyTanks = new List<EnemyTank>();
+            stars = new List<Star>();
 
             this.fieldSize = fieldSize;
             this.tanksAmount = tanksAmount;
-            this.applesAmount = applesAmount;
+            this.starsAmount = starsAmount;
             this.gameSpeed = gameSpeed;
 
             CreateAllEnemyTanks();
+            CreateAllStars();
 
             wall = new Wall();
 
             gameStatus = GameStatus.stopping;
+        }
+
+        private void CreateAllStars()
+        {
+            int x, y;
+            while (Stars.Count < starsAmount)
+            {
+                x = random.Next(6) * 80;
+                y = random.Next(6) * 80;
+
+                bool flag = true;
+
+                foreach (var star in Stars)
+                {
+                    if (star.CoordinateX == x && star.CoordinateY == y)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag)
+                {
+                    Stars.Add(new Star(x, y));
+                }
+            }
         }
 
         private void CreateAllEnemyTanks()

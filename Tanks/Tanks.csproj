@@ -46,9 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addetion classes\AbstractTank.cs" />
+    <Compile Include="Addetion classes\HeroTank.cs" />
+    <Compile Include="Addetion classes\HeroTankImage.cs" />
+    <Compile Include="Addetion classes\Star.cs" />
+    <Compile Include="Addetion classes\StarImage.cs" />
     <Compile Include="Addetion classes\Wall.cs" />
     <Compile Include="Addetion classes\WallImage.cs" />
-    <Compile Include="Interfaces\IImpact.cs" />
     <Compile Include="Interfaces\IMove.cs" />
     <Compile Include="Interfaces\ITeleportation.cs" />
     <Compile Include="MVC classes\Controller.cs">
@@ -62,11 +66,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MVC classes\Model.cs" />
     <Compile Include="Addetion classes\EnemyTank.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Addetion classes\EnemyTankImage.cs" />
     <Compile Include="MVC classes\View.cs">
       <SubType>UserControl</SubType>
@@ -89,6 +88,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -99,19 +103,46 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tank.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\brick-wall.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tankdown.bmp" />
+    <None Include="Resources\star.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tankleft.bmp" />
+    <None Include="Resources\EnemyTankDown.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tankright.bmp" />
+    <None Include="Resources\EnemyTankLeft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EnemyTankRight.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeroTankUp.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeroTankDown.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeroTankLeft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeroTankRight.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EnemyTankUp.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HunterTankDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HunterTankLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HunterTankRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HunterTankUp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

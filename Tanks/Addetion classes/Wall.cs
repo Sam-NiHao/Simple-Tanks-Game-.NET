@@ -10,21 +10,11 @@ namespace Tanks.Addetion_classes
     {
         WallImage wallImg = new WallImage();
         Image img;
-        int coordinateX, coordinateY;
 
         public Wall()
         {
             img = wallImg.WallImg;
         }
-        public int CoordinateX
-        {
-            get { return coordinateX; }
-        }
-
-        public int CoordinateY
-        {
-            get { return coordinateY; }
-        } 
 
         public Image Img
         {

@@ -25,6 +25,7 @@ namespace Tanks
         protected override void OnPaint(PaintEventArgs e)
         {
             DrawWalls(e);
+            DrawStar(e);
             DrawEnemyTank(e);
 
             if (model.gameStatus != GameStatus.playing)
@@ -32,6 +33,14 @@ namespace Tanks
 
             Thread.Sleep(model.gameSpeed);
             Invalidate();
+        }
+
+        private void DrawStar(PaintEventArgs e)
+        {
+            foreach (var star in model.Stars)
+            {
+                e.Graphics.DrawImage(star.Img, new Point(star.CoordinateX, star.CoordinateY));
+            }
         }
 
         public void DrawEnemyTank(PaintEventArgs e)

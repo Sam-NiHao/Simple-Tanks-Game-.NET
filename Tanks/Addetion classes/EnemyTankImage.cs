@@ -8,10 +8,10 @@ namespace Tanks
 {
     class EnemyTankImage
     {
-        Image tankImageUp = Properties.Resources.tankUp;
-        Image tankImageDown = Properties.Resources.tankDown;
-        Image tankImageLeft = Properties.Resources.tankLeft;
-        Image tankImageRight = Properties.Resources.tankRight;
+        Image tankImageUp = Properties.Resources.EnemyTankUp;
+        Image tankImageDown = Properties.Resources.EnemyTankDown;
+        Image tankImageLeft = Properties.Resources.EnemyTankLeft;
+        Image tankImageRight = Properties.Resources.EnemyTankRight;
 
         public Image TankImageUp { get => tankImageUp; set => tankImageUp = value; }
         public Image TankImageDown { get => tankImageDown; set => tankImageDown = value; }

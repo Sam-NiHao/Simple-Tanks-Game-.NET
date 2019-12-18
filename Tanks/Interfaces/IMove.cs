@@ -10,5 +10,6 @@ namespace Tanks
     {
         void Move();
         void Turn();
+        void ReverseMove();
     }
 }

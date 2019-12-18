@@ -118,17 +118,44 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tankDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tankdown.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EnemyTankDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EnemyTankDown.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tankLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tankleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EnemyTankLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EnemyTankLeft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tankRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tankright.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EnemyTankRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EnemyTankRight.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tankUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tank.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EnemyTankUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EnemyTankUp.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HeroTankDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeroTankDown.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HeroTankLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeroTankLeft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HeroTankRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeroTankRight.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HeroTankUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeroTankUp.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HunterTankDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HunterTankDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HunterTankLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HunterTankLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HunterTankRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HunterTankRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HunterTankUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HunterTankUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="star" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\star.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="wall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brick-wall.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
