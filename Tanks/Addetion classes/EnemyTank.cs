@@ -188,5 +188,13 @@ namespace Tanks
                 img = tankImg.TankImageUp;
             }
         }
+
+        public void ReverseMove()
+        {
+            DirectX = -1 * DirectX;
+            DirectY = -1 * DirectY;
+
+            ChooseImageDiraction();
+        }
     }
 }

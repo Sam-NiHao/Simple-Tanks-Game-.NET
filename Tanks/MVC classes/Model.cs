@@ -14,8 +14,6 @@ namespace Tanks
 
         public GameStatus gameStatus;
 
-        //public EnemyTank tank { get; set; }
-
         List<EnemyTank> enemyTanks;
         internal List<EnemyTank> EnemyTanks { get => enemyTanks; }
 
@@ -32,7 +30,6 @@ namespace Tanks
             this.applesAmount = applesAmount;
             this.gameSpeed = gameSpeed;
 
-            //tank = new EnemyTank(fieldSize);
             CreateAllEnemyTanks();
 
             wall = new Wall();
@@ -77,7 +74,38 @@ namespace Tanks
                     tank.Move();
                 }
 
-                //tank.Move();
+                for (int i = 0; i < EnemyTanks.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < EnemyTanks.Count; j++)
+                    {
+                        if (
+                            (Math.Abs(enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX) <= 40 && (enemyTanks[i].CoordinateY == enemyTanks[j].CoordinateY)) //горизонтальная проверка
+                            ||
+                            (Math.Abs(enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY) <= 40 && (enemyTanks[i].CoordinateX == enemyTanks[j].CoordinateX)) // вертикальная проверка
+                            ||
+                            (Math.Abs(enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX) <= 40 && Math.Abs(enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY) <= 40) // угловая проверка
+                          )
+                        //if (
+                        //    (Math.Abs(enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX) <= 40 && (enemyTanks[i].CoordinateY == enemyTanks[j].CoordinateY))
+                        //    ||
+                        //    (Math.Abs(enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY) <= 40 && (enemyTanks[i].CoordinateX == enemyTanks[j].CoordinateX))
+                        //    ||
+                        //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == 40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == 40) && (enemyTanks[i].DirectY == -1 || enemyTanks[i].DirectX == -1)
+                        //    ||
+                        //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == -40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == -40) && (enemyTanks[j].DirectY == -1 || enemyTanks[j].DirectX == -1)
+                        //    ||
+                        //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == 40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == 40) && (enemyTanks[i].DirectY == -1 || enemyTanks[i].DirectX == -1)
+                        //    ||
+                        //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == 40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == -40) && (enemyTanks[j].DirectY == -1 || enemyTanks[j].DirectX == 1)
+                        //    ||
+                        //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == -40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == 40) && (enemyTanks[i].DirectY == -1 || enemyTanks[i].DirectX == 1)
+                        //  )
+                        {
+                            enemyTanks[i].ReverseMove();
+                            enemyTanks[j].ReverseMove();
+                        }
+                    }
+                }
             }
         }
     }
