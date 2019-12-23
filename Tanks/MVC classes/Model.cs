@@ -18,8 +18,8 @@ namespace Tanks
 
         public GameStatus gameStatus;
 
-        List<EnemyTank> enemyTanks;
-        internal List<EnemyTank> EnemyTanks { get => enemyTanks; }
+        List<AbstractTank> enemyTanks;
+        internal List<AbstractTank> EnemyTanks { get => enemyTanks; }
 
         List<Star> stars;
         internal List<Star> Stars { get => stars; }
@@ -33,7 +33,7 @@ namespace Tanks
             random = new Random();
 
             HeroTank = new HeroTank(fieldSize);
-            enemyTanks = new List<EnemyTank>();
+            enemyTanks = new List<AbstractTank>();
             stars = new List<Star>();
             awardImage = new AwardImage();
 
@@ -84,8 +84,14 @@ namespace Tanks
         private void CreateEnemyTanks()
         {
             int x, y;
-            while (EnemyTanks.Count < tanksAmount)
+            while (EnemyTanks.Count < tanksAmount + 1)
+            //while (EnemyTanks.Count == 0)
             {
+                if (EnemyTanks.Count == 0)
+                {
+                    EnemyTanks.Add(new HunterTank(fieldSize, random.Next(6) * 80, random.Next(6) * 80));
+                }
+
                 x = random.Next(6) * 80;
                 y = random.Next(6) * 80;
 
@@ -114,10 +120,11 @@ namespace Tanks
                 Thread.Sleep(gameSpeed);
 
                 HeroTank.Move();
+                ((HunterTank)EnemyTanks[0]).Move(HeroTank.CoordinateX, HeroTank.CoordinateY);
 
-                foreach (var tank in EnemyTanks)
+                for (int i = 0; i < EnemyTanks.Count; i++)
                 {
-                    tank.Move();
+                    EnemyTanks[i].Move();
                 }
 
                 for (int i = 0; i < EnemyTanks.Count - 1; i++)

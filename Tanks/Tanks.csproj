@@ -50,6 +50,8 @@
     <Compile Include="Addetion classes\AwardImage.cs" />
     <Compile Include="Addetion classes\HeroTank.cs" />
     <Compile Include="Addetion classes\HeroTankImage.cs" />
+    <Compile Include="Addetion classes\HunterTank.cs" />
+    <Compile Include="Addetion classes\HunterTankImage.cs" />
     <Compile Include="Addetion classes\Star.cs" />
     <Compile Include="Addetion classes\StarImage.cs" />
     <Compile Include="Addetion classes\Wall.cs" />

@@ -8,7 +8,7 @@ namespace Tanks.Addetion_classes
     {
         Image img;
 
-        static Random random = new Random();
+        protected static Random random = new Random();
 
         int coordinateX, coordinateY, directX, directY, fieldSize;
 
@@ -88,7 +88,7 @@ namespace Tanks.Addetion_classes
             }
         }
 
-        public void Move()
+        public virtual void Move()
         {
             CoordinateX += DirectX;
             CoordinateY += DirectY;
@@ -98,6 +98,35 @@ namespace Tanks.Addetion_classes
                 Turn();
             }
             Teleport();
+        }
+
+        public void Teleport()
+        {
+            if (CoordinateX == -1)
+            {
+                CoordinateX = FieldSize - 1;
+            }
+            if (CoordinateX == FieldSize + 1)
+            {
+                CoordinateX = 1;
+            }
+
+            if (CoordinateY == -1)
+            {
+                CoordinateY = FieldSize - 1;
+            }
+            if (CoordinateY == FieldSize + 1)
+            {
+                CoordinateY = 1;
+            }
+        }
+
+        public virtual void ReverseMove()
+        {
+            DirectX = -1 * DirectX;
+            DirectY = -1 * DirectY;
+
+            ChooseImageDiraction();
         }
 
         public virtual void Turn()
@@ -128,36 +157,6 @@ namespace Tanks.Addetion_classes
             }
             ChooseImageDiraction();
         }
-
-        public void Teleport()
-        {
-            if (CoordinateX == -1)
-            {
-                CoordinateX = FieldSize - 1;
-            }
-            if (CoordinateX == FieldSize + 1)
-            {
-                CoordinateX = 1;
-            }
-
-            if (CoordinateY == -1)
-            {
-                CoordinateY = FieldSize - 1;
-            }
-            if (CoordinateY == FieldSize + 1)
-            {
-                CoordinateY = 1;
-            }
-        }
-
         public abstract void ChooseImageDiraction();
-
-        public virtual void ReverseMove()
-        {
-            DirectX = -1 * DirectX;
-            DirectY = -1 * DirectY;
-
-            ChooseImageDiraction();
-        }
     }
 }
