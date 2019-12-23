@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addetion classes\AbstractTank.cs" />
+    <Compile Include="Addetion classes\AwardImage.cs" />
     <Compile Include="Addetion classes\HeroTank.cs" />
     <Compile Include="Addetion classes\HeroTankImage.cs" />
     <Compile Include="Addetion classes\Star.cs" />
@@ -143,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HunterTankUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Award.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

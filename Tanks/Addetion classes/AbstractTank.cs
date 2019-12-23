@@ -8,7 +8,7 @@ namespace Tanks.Addetion_classes
     {
         Image img;
 
-        static Random random;
+        static Random random = new Random();
 
         int coordinateX, coordinateY, directX, directY, fieldSize;
 
@@ -40,25 +40,10 @@ namespace Tanks.Addetion_classes
             }
         }
 
-        public int CoordinateX { get => coordinateX; }
-
-        public int CoordinateY { get => coordinateY; }
-
         public Image Img { get => img; set => img = value; }
-
-        public AbstractTank(int fieldSize, int x, int y)
-        {
-            this.fieldSize = fieldSize;
-
-            random = new Random();
-
-            ChooseDiractionForTanks();
-
-            ChooseImageDiraction();
-
-            coordinateX = x;
-            coordinateY = y;
-        }
+        public int FieldSize { get => fieldSize; set => fieldSize = value; }
+        public int CoordinateX { get => coordinateX; set => coordinateX = value; }
+        public int CoordinateY { get => coordinateY; set => coordinateY = value; }
 
         public void ChooseDiractionForTanks()
         {
@@ -105,8 +90,8 @@ namespace Tanks.Addetion_classes
 
         public void Move()
         {
-            coordinateX += DirectX;
-            coordinateY += DirectY;
+            CoordinateX += DirectX;
+            CoordinateY += DirectY;
 
             if ((Math.IEEERemainder(CoordinateX, 80) == 0) && (Math.IEEERemainder(CoordinateY, 80) == 0)) // мы на перекрестке
             {
@@ -115,7 +100,7 @@ namespace Tanks.Addetion_classes
             Teleport();
         }
 
-        public void Turn()
+        public virtual void Turn()
         {
             if (random.Next(0, 5000) < 2500) // далее будем двигатся по вертикали
             {
@@ -148,26 +133,26 @@ namespace Tanks.Addetion_classes
         {
             if (CoordinateX == -1)
             {
-                coordinateX = fieldSize - 1;
+                CoordinateX = FieldSize - 1;
             }
-            if (CoordinateX == fieldSize + 1)
+            if (CoordinateX == FieldSize + 1)
             {
-                coordinateX = 1;
+                CoordinateX = 1;
             }
 
-            if (coordinateY == -1)
+            if (CoordinateY == -1)
             {
-                coordinateY = fieldSize - 1;
+                CoordinateY = FieldSize - 1;
             }
-            if (coordinateY == fieldSize + 1)
+            if (CoordinateY == FieldSize + 1)
             {
-                coordinateY = 1;
+                CoordinateY = 1;
             }
         }
 
         public abstract void ChooseImageDiraction();
 
-        public void ReverseMove()
+        public virtual void ReverseMove()
         {
             DirectX = -1 * DirectX;
             DirectY = -1 * DirectY;

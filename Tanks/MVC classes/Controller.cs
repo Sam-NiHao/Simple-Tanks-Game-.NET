@@ -56,5 +56,30 @@ namespace Tanks
                 model.gameStatus = GameStatus.stopping;
             }
         }
+
+        private void HeroTankHandling(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case 'a':
+                    model.HeroTank.DirectXTurn = -1;
+                    model.HeroTank.DirectYTurn = 0;
+                    break;
+                case 'd':
+                    model.HeroTank.DirectXTurn = 1;
+                    model.HeroTank.DirectYTurn = 0;
+                    break;
+                case 'w':
+                    model.HeroTank.DirectXTurn = 0;
+                    model.HeroTank.DirectYTurn = -1;
+                    break;
+                case 's':
+                    model.HeroTank.DirectXTurn = 0;
+                    model.HeroTank.DirectYTurn = 1;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

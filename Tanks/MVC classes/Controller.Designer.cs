@@ -42,6 +42,7 @@
             this.buttonStartStop.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonStartStop.UseVisualStyleBackColor = true;
             this.buttonStartStop.Click += new System.EventHandler(this.ButtonStartStop_Click);
+            this.buttonStartStop.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HeroTankHandling);
             // 
             // ControllerMainForm
             // 
