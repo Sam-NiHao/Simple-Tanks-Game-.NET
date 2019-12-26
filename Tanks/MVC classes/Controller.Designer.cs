@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControllerMainForm));
             this.buttonStartStop = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonStartStop
             // 
             this.buttonStartStop.Location = new System.Drawing.Point(699, 12);
             this.buttonStartStop.Name = "buttonStartStop";
-            this.buttonStartStop.Size = new System.Drawing.Size(101, 30);
+            this.buttonStartStop.Size = new System.Drawing.Size(101, 36);
             this.buttonStartStop.TabIndex = 0;
             this.buttonStartStop.Text = "Start | Stop";
             this.buttonStartStop.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -44,11 +45,22 @@
             this.buttonStartStop.Click += new System.EventHandler(this.ButtonStartStop_Click);
             this.buttonStartStop.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HeroTankHandling);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(699, 65);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 33);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "New Game";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.NewGameButtonClick);
+            // 
             // ControllerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 753);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonStartStop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -63,6 +75,7 @@
         #endregion
 
         private System.Windows.Forms.Button buttonStartStop;
+        private System.Windows.Forms.Button button1;
     }
 }
 

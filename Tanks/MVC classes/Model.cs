@@ -9,11 +9,13 @@ namespace Tanks
     {
         Random random;
 
+        Missile missile;
         HeroTank heroTank;
         AwardImage awardImage;
+        List<DestroyedTank> destroyedTanks;
 
         int fieldSize, tanksAmount, starsAmount, pickedUpStars;
-        int gotStarPosition = 500;
+        int gotStarPosition; 
         public int gameSpeed { get; set; }
 
         public GameStatus gameStatus;
@@ -25,29 +27,21 @@ namespace Tanks
         internal List<Star> Stars { get => stars; }
 
         public Wall wall { get; set; }
-        internal HeroTank HeroTank { get => heroTank; set => heroTank = value; }
+        internal HeroTank HeroTank { get => heroTank; }
         internal AwardImage AwardImage { get => awardImage; }
+        internal Missile Missile { get => missile; }
+        internal List<DestroyedTank> DestroyedTanks { get => destroyedTanks; }
 
         public Model(int fieldSize, int tanksAmount, int starsAmount, int gameSpeed)
         {
             random = new Random();
-
-            HeroTank = new HeroTank(fieldSize);
-            enemyTanks = new List<AbstractTank>();
-            stars = new List<Star>();
-            awardImage = new AwardImage();
 
             this.fieldSize = fieldSize;
             this.tanksAmount = tanksAmount;
             this.starsAmount = starsAmount;
             this.gameSpeed = gameSpeed;
 
-            CreateEnemyTanks();
-            CreateStars();
-
-            wall = new Wall();
-
-            gameStatus = GameStatus.stopping;
+            NewGame();
         }
 
         private void CreateStars()
@@ -85,8 +79,8 @@ namespace Tanks
         {
             int x, y;
             while (EnemyTanks.Count < tanksAmount + 1)
-            //while (EnemyTanks.Count == 0)
-            {
+                //while (EnemyTanks.Count == 0)
+                {
                 if (EnemyTanks.Count == 0)
                 {
                     EnemyTanks.Add(new HunterTank(fieldSize, random.Next(6) * 80, random.Next(6) * 80));
@@ -119,12 +113,32 @@ namespace Tanks
             {
                 Thread.Sleep(gameSpeed);
 
+                Missile.Move();
+
                 HeroTank.Move();
                 ((HunterTank)EnemyTanks[0]).Move(HeroTank.CoordinateX, HeroTank.CoordinateY);
 
-                for (int i = 0; i < EnemyTanks.Count; i++)
+                for (int i = 1; i < EnemyTanks.Count; i++)
                 {
                     EnemyTanks[i].Move();
+                }
+
+                foreach (var destroyTank in DestroyedTanks)
+                {
+                    destroyTank.Fire();
+                }
+
+                for (int i = 1; i < EnemyTanks.Count; i++)
+                {
+                    //if ((Missile.CoordinateX - EnemyTanks[i].CoordinateX) < 39 && (Missile.CoordinateY - EnemyTanks[i].CoordinateY) < 39
+                    //    &&
+                    //    (Missile.CoordinateX - EnemyTanks[i].CoordinateX) > 14 && (Missile.CoordinateY - EnemyTanks[i].CoordinateY) > 14)
+                    if(Math.Abs(EnemyTanks[i].CoordinateX - Missile.CoordinateX) < 25 && Math.Abs(EnemyTanks[i].CoordinateY - Missile.CoordinateY) < 25)
+                    {
+                        DestroyedTanks.Add(new DestroyedTank(EnemyTanks[i].CoordinateX, EnemyTanks[i].CoordinateY));
+                        EnemyTanks.RemoveAt(i);
+                        missile.DefaultSettings();
+                    }
                 }
 
                 for (int i = 0; i < EnemyTanks.Count - 1; i++)
@@ -188,5 +202,24 @@ namespace Tanks
             }
         }
 
+        internal void NewGame()
+        {
+            pickedUpStars = 0;
+            gotStarPosition = 500;
+
+            missile = new Missile();
+            heroTank = new HeroTank(fieldSize);
+            enemyTanks = new List<AbstractTank>();
+            stars = new List<Star>();
+            awardImage = new AwardImage();
+            destroyedTanks = new List<DestroyedTank>();
+
+            CreateEnemyTanks();
+            CreateStars();
+
+            wall = new Wall();
+
+            gameStatus = GameStatus.stopping;
+        }
     }
 }

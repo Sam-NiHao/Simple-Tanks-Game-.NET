@@ -48,10 +48,14 @@
   <ItemGroup>
     <Compile Include="Addetion classes\AbstractTank.cs" />
     <Compile Include="Addetion classes\AwardImage.cs" />
+    <Compile Include="Addetion classes\DestroyedTank.cs" />
+    <Compile Include="Addetion classes\DestroyedTankImage.cs" />
     <Compile Include="Addetion classes\HeroTank.cs" />
     <Compile Include="Addetion classes\HeroTankImage.cs" />
     <Compile Include="Addetion classes\HunterTank.cs" />
     <Compile Include="Addetion classes\HunterTankImage.cs" />
+    <Compile Include="Addetion classes\Missile.cs" />
+    <Compile Include="Addetion classes\MissileImage.cs" />
     <Compile Include="Addetion classes\Star.cs" />
     <Compile Include="Addetion classes\StarImage.cs" />
     <Compile Include="Addetion classes\Wall.cs" />
@@ -149,6 +153,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Award.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DestroyedTank.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MissileDown.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MissileLeft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MissileRight.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MissileUp.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

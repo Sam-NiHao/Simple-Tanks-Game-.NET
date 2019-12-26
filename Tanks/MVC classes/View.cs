@@ -25,11 +25,13 @@ namespace Tanks
         protected override void OnPaint(PaintEventArgs e)
         {
             DrawWalls(e);
+            DrawDestroyedTank(e);
             DrawStar(e);
             DrawEnemyTank(e);
             DrawHeroTank(e);
             DrawAward(e);
-
+            DrawMissile(e);
+            
             if (model.gameStatus != GameStatus.playing)
                 return;
 
@@ -37,9 +39,22 @@ namespace Tanks
             Invalidate();
         }
 
+        private void DrawDestroyedTank(PaintEventArgs e)
+        {
+            foreach (var destroyTank in model.DestroyedTanks)
+            {
+                e.Graphics.DrawImage(destroyTank.Img, new Point(destroyTank.CoordinateX, destroyTank.CoordinateY));
+            } 
+        }
+
+        private void DrawMissile(PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(model.Missile.Img, new Point(model.Missile.CoordinateX, model.Missile.CoordinateY));
+        }
+
         private void DrawAward(PaintEventArgs e)
         {
-            e.Graphics.DrawImage(model.AwardImage.AwardImg, new Point(10, 530));
+            e.Graphics.DrawImage(model.AwardImage.AwardImg, new Point(10, 520));
         }
 
         private void DrawHeroTank(PaintEventArgs e)
@@ -57,9 +72,9 @@ namespace Tanks
 
         public void DrawEnemyTank(PaintEventArgs e)
         {
-            foreach (var tank in model.EnemyTanks)
+            for (int i = 0; i < model.EnemyTanks.Count; i++)
             {
-                e.Graphics.DrawImage(tank.Img, new Point(tank.CoordinateX, tank.CoordinateY));
+                e.Graphics.DrawImage(model.EnemyTanks[i].Img, new Point(model.EnemyTanks[i].CoordinateX, model.EnemyTanks[i].CoordinateY));
             }
         }
 

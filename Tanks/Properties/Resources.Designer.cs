@@ -73,6 +73,16 @@ namespace Tanks.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DestroyedTank {
+            get {
+                object obj = ResourceManager.GetObject("DestroyedTank", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EnemyTankDown {
             get {
                 object obj = ResourceManager.GetObject("EnemyTankDown", resourceCulture);
@@ -186,6 +196,46 @@ namespace Tanks.Properties {
         internal static System.Drawing.Bitmap HunterTankUp {
             get {
                 object obj = ResourceManager.GetObject("HunterTankUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MissileDown {
+            get {
+                object obj = ResourceManager.GetObject("MissileDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MissileLeft {
+            get {
+                object obj = ResourceManager.GetObject("MissileLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MissileRight {
+            get {
+                object obj = ResourceManager.GetObject("MissileRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MissileUp {
+            get {
+                object obj = ResourceManager.GetObject("MissileUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

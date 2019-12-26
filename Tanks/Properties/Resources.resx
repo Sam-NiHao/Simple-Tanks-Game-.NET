@@ -121,6 +121,9 @@
   <data name="Award" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Award.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DestroyedTank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DestroyedTank.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="EnemyTankDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EnemyTankDown.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -156,6 +159,18 @@
   </data>
   <data name="HunterTankUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HunterTankUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissileDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissileDown.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissileLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissileLeft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissileRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissileRight.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissileUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissileUp.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="star" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\star.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

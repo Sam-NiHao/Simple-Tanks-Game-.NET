@@ -62,24 +62,62 @@ namespace Tanks
             switch (e.KeyChar)
             {
                 case 'a':
+                case 'A':
                     model.HeroTank.DirectXTurn = -1;
                     model.HeroTank.DirectYTurn = 0;
                     break;
                 case 'd':
+                case 'D':
                     model.HeroTank.DirectXTurn = 1;
                     model.HeroTank.DirectYTurn = 0;
                     break;
                 case 'w':
+                case 'W':
                     model.HeroTank.DirectXTurn = 0;
                     model.HeroTank.DirectYTurn = -1;
                     break;
                 case 's':
+                case 'S':
                     model.HeroTank.DirectXTurn = 0;
                     model.HeroTank.DirectYTurn = 1;
                     break;
                 default:
+                    {
+                        model.Missile.DirectX = model.HeroTank.DirectX;
+                        model.Missile.DirectY = model.HeroTank.DirectY;
+
+                        if (model.HeroTank.DirectY == -1)
+                        {
+                            model.Missile.CoordinateX = model.HeroTank.CoordinateX;
+                            model.Missile.CoordinateY = model.HeroTank.CoordinateY - 35;
+                        }
+
+                        if (model.HeroTank.DirectY == 1)
+                        {
+                            model.Missile.CoordinateX = model.HeroTank.CoordinateX;
+                            model.Missile.CoordinateY = model.HeroTank.CoordinateY + 35;
+                        }
+
+                        if (model.HeroTank.DirectX == -1)
+                        {
+                            model.Missile.CoordinateX = model.HeroTank.CoordinateX - 35;
+                            model.Missile.CoordinateY = model.HeroTank.CoordinateY;
+                        }
+
+                        if (model.HeroTank.DirectX == 1)
+                        {
+                            model.Missile.CoordinateX = model.HeroTank.CoordinateX + 35;
+                            model.Missile.CoordinateY = model.HeroTank.CoordinateY;
+                        }
+                    }
                     break;
             }
+        }
+
+        private void NewGameButtonClick(object sender, EventArgs e)
+        {
+            model.NewGame();
+            view.Refresh();
         }
     }
 }

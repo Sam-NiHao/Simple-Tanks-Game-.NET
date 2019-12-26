@@ -8,7 +8,6 @@ namespace Tanks.Addetion_classes
 {
     class HunterTank : AbstractTank
     {
-        int heroTankCoordinateX, heroTankCoordinateY;
         HunterTankImage hunterTankImg = new HunterTankImage();
 
         public HunterTank(int fieldSize, int x, int y)
@@ -25,11 +24,13 @@ namespace Tanks.Addetion_classes
 
         public void Turn(int heroTankCoordinateX, int heroTankCoordinateY)
         {
+            DirectX = DirectY = 0;
+
             if (CoordinateX > heroTankCoordinateX)
             {
                 DirectX = -1;
             }
-            else
+            if (CoordinateX < heroTankCoordinateX)
             {
                 DirectX = 1;
             }
@@ -38,7 +39,7 @@ namespace Tanks.Addetion_classes
             {
                 DirectY = -1;
             }
-            else
+            if (CoordinateY < heroTankCoordinateY)
             {
                 DirectY = 1;
             }
@@ -61,9 +62,6 @@ namespace Tanks.Addetion_classes
 
         public void Move(int heroTankCoordinateX, int heroTankCoordinateY)
         {
-            this.heroTankCoordinateX = heroTankCoordinateX;
-            this.heroTankCoordinateY = heroTankCoordinateY;
-
             CoordinateX += DirectX;
             CoordinateY += DirectY;
 
