@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Tanks
 {
@@ -54,7 +47,7 @@ namespace Tanks
 
         private void DrawAward(PaintEventArgs e)
         {
-            e.Graphics.DrawImage(model.AwardImage.AwardImg, new Point(10, 520));
+            e.Graphics.DrawImage(model.AwardImage.AwardImg, new Point(10, 520)); //переименовать 10, 520
         }
 
         private void DrawHeroTank(PaintEventArgs e)
@@ -80,7 +73,7 @@ namespace Tanks
 
         public void DrawWalls(PaintEventArgs e)
         {
-            for (int x = 40; x < 480; x += 80)
+            for (int x = 40; x < 480; x += 80) //переименовать numbers
             {
                 for (int y = 40; y < 480; y += 80)
                 {

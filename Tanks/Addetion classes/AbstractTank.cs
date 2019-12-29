@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Drawing;
-using Tanks.Interfaces;
 
-namespace Tanks.Addetion_classes
+namespace Tanks 
 {
     abstract class AbstractTank : IMove, ITeleportation
     {
-        Image img;
+        public Image Img { get; set; }
 
         protected static Random random = new Random();
 
@@ -25,7 +24,6 @@ namespace Tanks.Addetion_classes
                 }
             }
         }
-
         public int DirectY
         {
             get { return directY; }
@@ -39,8 +37,6 @@ namespace Tanks.Addetion_classes
                 }
             }
         }
-
-        public Image Img { get => img; set => img = value; }
         public int FieldSize { get => fieldSize; set => fieldSize = value; }
         public int CoordinateX { get => coordinateX; set => coordinateX = value; }
         public int CoordinateY { get => coordinateY; set => coordinateY = value; }
@@ -93,10 +89,11 @@ namespace Tanks.Addetion_classes
             CoordinateX += DirectX;
             CoordinateY += DirectY;
 
-            if ((Math.IEEERemainder(CoordinateX, 80) == 0) && (Math.IEEERemainder(CoordinateY, 80) == 0)) // мы на перекрестке
+            if ((Math.IEEERemainder(CoordinateX, 80) == 0) && (Math.IEEERemainder(CoordinateY, 80) == 0)) // мы на перекрестке rename 80
             {
                 Turn();
             }
+
             Teleport();
         }
 
@@ -155,6 +152,7 @@ namespace Tanks.Addetion_classes
                     }
                 }
             }
+
             ChooseImageDiraction();
         }
         public abstract void ChooseImageDiraction();

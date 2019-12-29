@@ -35,6 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.DoubleBuffered = true;
             this.Name = "View";
             this.Size = new System.Drawing.Size(680, 700);
             this.ResumeLayout(false);

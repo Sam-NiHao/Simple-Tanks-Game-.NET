@@ -1,8 +1,4 @@
-﻿using System;
-using System.Drawing;
-using Tanks.Interfaces;
-
-namespace Tanks.Addetion_classes
+﻿namespace Tanks.Addetion_classes
 {
     class HeroTank : AbstractTank
     {

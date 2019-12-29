@@ -21,6 +21,7 @@ namespace Tanks
             InitializeComponent();
 
             model = new Model(fieldSize, tanksAmount, starsAmount, gameSpeed);
+            model.changeStatusStreep += new Streep(ShowGameStatusInStatusStrip);
 
             view = new View(model);
             this.Controls.Add(view);
@@ -31,19 +32,25 @@ namespace Tanks
 
         }
 
+        void ShowGameStatusInStatusStrip()
+        {
+            GameStatusStrip.Text = model.gameStatus.ToString();
+        }
+
         private void ButtonStartStop_Click(object sender, EventArgs e)
         {
             if (model.gameStatus == GameStatus.playing)
             {
                 modelPlay.Abort();
                 model.gameStatus = GameStatus.stopping;
+                ShowGameStatusInStatusStrip();
             }
             else
             {
                 model.gameStatus = GameStatus.playing;
                 modelPlay = new Thread(model.StartGame);
                 modelPlay.Start();
-
+                ShowGameStatusInStatusStrip();
                 view.Invalidate();
             }
         }
@@ -83,34 +90,43 @@ namespace Tanks
                     break;
                 default:
                     {
-                        model.Missile.DirectX = model.HeroTank.DirectX;
-                        model.Missile.DirectY = model.HeroTank.DirectY;
-
-                        if (model.HeroTank.DirectY == -1)
-                        {
-                            model.Missile.CoordinateX = model.HeroTank.CoordinateX;
-                            model.Missile.CoordinateY = model.HeroTank.CoordinateY - 35;
-                        }
-
-                        if (model.HeroTank.DirectY == 1)
-                        {
-                            model.Missile.CoordinateX = model.HeroTank.CoordinateX;
-                            model.Missile.CoordinateY = model.HeroTank.CoordinateY + 35;
-                        }
-
-                        if (model.HeroTank.DirectX == -1)
-                        {
-                            model.Missile.CoordinateX = model.HeroTank.CoordinateX - 35;
-                            model.Missile.CoordinateY = model.HeroTank.CoordinateY;
-                        }
-
-                        if (model.HeroTank.DirectX == 1)
-                        {
-                            model.Missile.CoordinateX = model.HeroTank.CoordinateX + 35;
-                            model.Missile.CoordinateY = model.HeroTank.CoordinateY;
-                        }
+                        SetMissileDirection();
+                        SetMissileCoordinates();
                     }
                     break;
+            }
+        }
+
+        private void SetMissileDirection()
+        {
+            model.Missile.DirectX = model.HeroTank.DirectX;
+            model.Missile.DirectY = model.HeroTank.DirectY;
+        }
+
+        private void SetMissileCoordinates()
+        {
+            if (model.HeroTank.DirectY == -1)
+            {
+                model.Missile.CoordinateX = model.HeroTank.CoordinateX;
+                model.Missile.CoordinateY = model.HeroTank.CoordinateY - 35;
+            }
+
+            if (model.HeroTank.DirectY == 1)
+            {
+                model.Missile.CoordinateX = model.HeroTank.CoordinateX;
+                model.Missile.CoordinateY = model.HeroTank.CoordinateY + 35; //переименовать 35
+            }
+
+            if (model.HeroTank.DirectX == -1)
+            {
+                model.Missile.CoordinateX = model.HeroTank.CoordinateX - 35;
+                model.Missile.CoordinateY = model.HeroTank.CoordinateY;
+            }
+
+            if (model.HeroTank.DirectX == 1)
+            {
+                model.Missile.CoordinateX = model.HeroTank.CoordinateX + 35;
+                model.Missile.CoordinateY = model.HeroTank.CoordinateY;
             }
         }
 
