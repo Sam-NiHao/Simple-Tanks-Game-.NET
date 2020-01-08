@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Tanks 
+namespace Tanks
 {
     abstract class AbstractTank : IMove, ITeleportation
     {
@@ -37,72 +37,64 @@ namespace Tanks
                 }
             }
         }
-        public int FieldSize { get => fieldSize; set => fieldSize = value; }
+        internal int FieldSize { get => fieldSize; set => fieldSize = value; }
         public int CoordinateX { get => coordinateX; set => coordinateX = value; }
         public int CoordinateY { get => coordinateY; set => coordinateY = value; }
 
         public void ChooseDiractionForTanks()
         {
-            //if (random.Next(0, 5000) < 2500)
-            //{
-            //    DirectX = 0;
-
-            //    while (DirectY == 0)
-            //    {
-            //        DirectY = random.Next(-1, 2);
-            //    }
-            //}
-            //else
-            //{
-            //    DirectY = 0;
-
-            //    while (DirectX == 0)
-            //    {
-            //        DirectX = random.Next(-1, 2);
-            //    }
-            //}
-
-            if (random.Next(5000) < 2500)
+            if (random.Next(0, 5000) < 2500)
             {
-                DirectY = 0;
-            loop:
-                DirectX = random.Next(-1, 2);
-                if (DirectX == 0)
-                {
-                    goto loop;
-                }
+                SetDirectXDirectY();
             }
             else
             {
-                DirectX = 0;
-            loop:
+                SetDirectYDirectX();
+            }
+        }
+
+        private void SetDirectYDirectX()
+        {
+            DirectY = 0;
+
+            while (DirectX == 0)
+            {
+                DirectX = random.Next(-1, 2);
+            }
+        }
+
+        private void SetDirectXDirectY()
+        {
+            DirectX = 0;
+
+            while (DirectY == 0)
+            {
                 DirectY = random.Next(-1, 2);
-                if (DirectY == 0)
-                {
-                    goto loop;
-                }
             }
         }
 
         public virtual void Move()
         {
+            int cornerDistance = 80;
+
             CoordinateX += DirectX;
             CoordinateY += DirectY;
 
-            if ((Math.IEEERemainder(CoordinateX, 80) == 0) && (Math.IEEERemainder(CoordinateY, 80) == 0)) // мы на перекрестке rename 80
+            if ((Math.IEEERemainder(CoordinateX, cornerDistance) == 0) && (Math.IEEERemainder(CoordinateY, cornerDistance) == 0)) // мы на перекрестке
             {
                 Turn();
             }
 
-            Teleport();
+            TeleportThroughFieldBorders();
         }
 
-        public void Teleport()
+        public void TeleportThroughFieldBorders()
         {
             if (CoordinateX == -1)
             {
                 CoordinateX = FieldSize - 1;
             }
+
             if (CoordinateX == FieldSize + 1)
             {
                 CoordinateX = 1;
@@ -112,6 +104,7 @@ namespace Tanks
             {
                 CoordinateY = FieldSize - 1;
             }
+
             if (CoordinateY == FieldSize + 1)
             {
                 CoordinateY = 1;
@@ -130,31 +123,32 @@ namespace Tanks
         {
             if (random.Next(0, 5000) < 2500) // далее будем двигатся по вертикали
             {
-                if (DirectY == 0)
-                {
-                    DirectX = 0; // что бы двигаться по вертикали
-
-                    while (DirectY == 0) // Что бы дальше двигаться по вертикали, нужно Y присвоить 1 или -1
-                    {
-                        DirectY = random.Next(-1, 2);
-                    }
-                }
+                CheckDirectY();
             }
             else // далее будем двигатся по горизонтали
             {
-                if (DirectX == 0)
-                {
-                    DirectY = 0;
-
-                    while (DirectX == 0)
-                    {
-                        DirectX = random.Next(-1, 2);
-                    }
-                }
+                CheckDirectX();
             }
 
             ChooseImageDiraction();
         }
+
+        private void CheckDirectX()
+        {
+            if (DirectX == 0)
+            {
+                SetDirectYDirectX();
+            }
+        }
+
+        private void CheckDirectY()
+        {
+            if (DirectY == 0)
+            {
+                SetDirectXDirectY();
+            }
+        }
+
         public abstract void ChooseImageDiraction();
     }
 }

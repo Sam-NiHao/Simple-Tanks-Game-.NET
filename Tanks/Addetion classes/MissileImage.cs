@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class MissileImage
     {
@@ -9,9 +9,9 @@ namespace Tanks.Addetion_classes
         Image missileImageLeft = Properties.Resources.MissileLeft;
         Image missileImageRight = Properties.Resources.MissileRight;
 
-        public Image MissileImageUp { get => missileImageUp; set => missileImageUp = value; }
-        public Image MissileImageDown { get => missileImageDown; set => missileImageDown = value; }
-        public Image MissileImageLeft { get => missileImageLeft; set => missileImageLeft = value; }
-        public Image MissileImageRight { get => missileImageRight; set => missileImageRight = value; }
+        public Image MissileImageUp { get => missileImageUp; }
+        public Image MissileImageDown { get => missileImageDown; }
+        public Image MissileImageLeft { get => missileImageLeft; }
+        public Image MissileImageRight { get => missileImageRight; }
     }
 }

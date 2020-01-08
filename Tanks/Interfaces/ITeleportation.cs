@@ -2,6 +2,6 @@
 {
     interface ITeleportation
     {
-        void Teleport();
+        void TeleportThroughFieldBorders();
     }
 }

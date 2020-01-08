@@ -1,17 +1,17 @@
 ﻿using System.Drawing;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class DestroyedTank
     {
         DestroyedTankImage destroyedTankImg = new DestroyedTankImage();
-        Image img;
-        int coordinateX, coordinateY;
 
-        internal DestroyedTankImage DestroyedTankImg { get => destroyedTankImg; }
+        Image img;
         public Image Img { get => img; }
-        public int CoordinateX { get => coordinateX; set => coordinateX = value; }
-        public int CoordinateY { get => coordinateY; set => coordinateY = value; }
+
+        int coordinateX, coordinateY;
+        public int CoordinateX { get => coordinateX; }
+        public int CoordinateY { get => coordinateY; }
 
         public DestroyedTank(int x, int y)
         {

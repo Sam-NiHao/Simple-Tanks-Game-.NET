@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class WallImage
     {

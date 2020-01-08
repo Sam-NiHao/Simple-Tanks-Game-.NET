@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class DestroyedTankImage
     {
         Image destroyTank = Properties.Resources.DestroyedTank;
 
-        public Image DestroyTank { get => destroyTank; set => destroyTank = value; }
+        public Image DestroyTank { get => destroyTank; }
     }
 }

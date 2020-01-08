@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 
+[assembly: CLSCompliant(true)]
 namespace Tanks
 {
     public partial class ControllerMainForm : Form
@@ -21,13 +22,13 @@ namespace Tanks
             InitializeComponent();
 
             model = new Model(fieldSize, tanksAmount, starsAmount, gameSpeed);
-            model.changeStatusStreep += new Streep(ShowGameStatusInStatusStrip);
+            model.changeStatusStreep += new Strip(ShowGameStatusInStatusStrip);
 
             view = new View(model);
             this.Controls.Add(view);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void MainFormLoad(object sender, EventArgs e)
         {
 
         }
@@ -37,7 +38,7 @@ namespace Tanks
             GameStatusStrip.Text = model.gameStatus.ToString();
         }
 
-        private void ButtonStartStop_Click(object sender, EventArgs e)
+        private void ButtonStartStopClick(object sender, EventArgs e)
         {
             if (model.gameStatus == GameStatus.playing)
             {
@@ -55,7 +56,7 @@ namespace Tanks
             }
         }
 
-        private void ControllerMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void ControllerMainFormFormClosing(object sender, FormClosingEventArgs e)
         {
             if(modelPlay != null)
             {
@@ -105,27 +106,29 @@ namespace Tanks
 
         private void SetMissileCoordinates()
         {
+            int offset = 35;
+
             if (model.HeroTank.DirectY == -1)
             {
                 model.Missile.CoordinateX = model.HeroTank.CoordinateX;
-                model.Missile.CoordinateY = model.HeroTank.CoordinateY - 35;
+                model.Missile.CoordinateY = model.HeroTank.CoordinateY - offset;
             }
 
             if (model.HeroTank.DirectY == 1)
             {
                 model.Missile.CoordinateX = model.HeroTank.CoordinateX;
-                model.Missile.CoordinateY = model.HeroTank.CoordinateY + 35; //переименовать 35
+                model.Missile.CoordinateY = model.HeroTank.CoordinateY + offset;
             }
 
             if (model.HeroTank.DirectX == -1)
             {
-                model.Missile.CoordinateX = model.HeroTank.CoordinateX - 35;
+                model.Missile.CoordinateX = model.HeroTank.CoordinateX - offset;
                 model.Missile.CoordinateY = model.HeroTank.CoordinateY;
             }
 
             if (model.HeroTank.DirectX == 1)
             {
-                model.Missile.CoordinateX = model.HeroTank.CoordinateX + 35;
+                model.Missile.CoordinateX = model.HeroTank.CoordinateX + offset;
                 model.Missile.CoordinateY = model.HeroTank.CoordinateY;
             }
         }

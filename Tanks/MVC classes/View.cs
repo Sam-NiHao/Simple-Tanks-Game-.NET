@@ -28,7 +28,8 @@ namespace Tanks
             if (model.gameStatus != GameStatus.playing)
                 return;
 
-            Thread.Sleep(model.gameSpeed);
+            Thread.Sleep(model.GameSpeed);
+
             Invalidate();
         }
 
@@ -47,7 +48,10 @@ namespace Tanks
 
         private void DrawAward(PaintEventArgs e)
         {
-            e.Graphics.DrawImage(model.AwardImage.AwardImg, new Point(10, 520)); //переименовать 10, 520
+            int awardPositionCoordinateX = 10;
+            int awardPositionCoordinateY = 520;
+
+            e.Graphics.DrawImage(model.AwardImage.AwardImg, new Point(awardPositionCoordinateX, awardPositionCoordinateY));
         }
 
         private void DrawHeroTank(PaintEventArgs e)
@@ -73,11 +77,15 @@ namespace Tanks
 
         public void DrawWalls(PaintEventArgs e)
         {
-            for (int x = 40; x < 480; x += 80) //переименовать numbers
+            int wallSizeX, wallSizeY;
+            int gameFieldSize = 480;
+            int distanceBetweenWalls = 80;
+
+            for (wallSizeX = 40; wallSizeX < gameFieldSize; wallSizeX += distanceBetweenWalls)
             {
-                for (int y = 40; y < 480; y += 80)
+                for (wallSizeY = 40; wallSizeY < gameFieldSize; wallSizeY += distanceBetweenWalls)
                 {
-                    e.Graphics.DrawImage(model.wall.Img, new Point(x, y));
+                    e.Graphics.DrawImage(model.Wall.Img, new Point(wallSizeX,wallSizeY));
                 }
             }
 

@@ -1,25 +1,19 @@
 ﻿using System.Drawing;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class Star
     {
         StarImage starImg = new StarImage();
+
         Image img;
-
-        int coordinateX, coordinateY;
-
-        public Star(int x, int y)
-        {
-            img = starImg.StarImg;
-            coordinateX = x;
-            coordinateY = y;
-        }
 
         public Image Img
         {
             get { return img; }
         }
+
+        int coordinateX, coordinateY;
 
         public int CoordinateX
         {
@@ -29,6 +23,13 @@ namespace Tanks.Addetion_classes
         public int CoordinateY
         {
             get { return coordinateY; }
+        }
+
+        public Star(int starCoordinateX, int starCoordinateY)
+        {
+            img = starImg.StarImg;
+            coordinateX = starCoordinateX;
+            coordinateY = starCoordinateY;
         }
     }
 }

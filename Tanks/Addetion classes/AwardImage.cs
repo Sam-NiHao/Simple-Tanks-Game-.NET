@@ -1,10 +1,10 @@
 ﻿using System.Drawing;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class AwardImage
     {
-        Image awardImg = Properties.Resources.Award;
+        readonly Image awardImg = Properties.Resources.Award;
 
         public Image AwardImg
         {

@@ -1,22 +1,16 @@
-﻿namespace Tanks.Addetion_classes
+﻿namespace Tanks
 {
     class HeroTank : AbstractTank
     {
-        //static HeroTank uniqueInstance;
-
-        //protected HeroTank()
-        //{
-
-        //}
-
-        //public static HeroTank Instance()
-        //{
-        //    if (uniqueInstance == null)
-        //        uniqueInstance = new HeroTank();
-
-        //    return uniqueInstance;
-        //}
-
+        static HeroTank uniqueInstance;
+        public static HeroTank SingeltonMethod()
+        {
+            if(uniqueInstance == null)
+            {
+                return new HeroTank();
+            }
+            return uniqueInstance;
+        }
 
         HeroTankImage heroTankImg = new HeroTankImage();
 
@@ -49,9 +43,9 @@
             }
         }
 
-        public HeroTank(int fieldSize) // реализовать Singelton
+        protected HeroTank()
         {
-            FieldSize = fieldSize;
+            FieldSize = 450;
             CoordinateX = 240;
             CoordinateY = 480;
             DirectX = 0;
@@ -68,14 +62,17 @@
             {
                 Img = heroTankImg.HeroTankImageRight;
             }
+
             if (DirectX == -1)
             {
                 Img = heroTankImg.HeroTankImageLeft;
             }
+
             if (DirectY == 1)
             {
                 Img = heroTankImg.HeroTankImageDown;
             }
+
             if (DirectY == -1)
             {
                 Img = heroTankImg.HeroTankImageUp;

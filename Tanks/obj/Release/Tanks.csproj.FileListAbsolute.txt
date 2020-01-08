@@ -1,0 +1,11 @@
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\bin\Release\Tanks.exe.config
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\bin\Release\Tanks.exe
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\bin\Release\Tanks.pdb
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.csprojAssemblyReference.cache
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.ControllerMainForm.resources
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.Properties.Resources.resources
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.View.resources
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.csproj.GenerateResource.cache
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.csproj.CoreCompileInputs.cache
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.exe
+C:\Users\mr Sam\Desktop\Projects\Tanks\Tanks\obj\Release\Tanks.pdb

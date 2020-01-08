@@ -1,11 +1,14 @@
 ﻿using System.Drawing;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class Missile
     {
         MissileImage missileImg = new MissileImage();
+        internal MissileImage MissileImg { get => missileImg; }
+
         Image img;
+        public Image Img { get => img; }
 
         int coordinateX, coordinateY, directX, directY;
 
@@ -35,11 +38,9 @@ namespace Tanks.Addetion_classes
                 }
             }
         }
-
-        public Image Img { get => img; }
-        internal MissileImage MissileImg { get => missileImg; }
         public int CoordinateX { get => coordinateX; set => coordinateX = value; }
         public int CoordinateY { get => coordinateY; set => coordinateY = value; }
+
         public Missile()
         {
             img = MissileImg.MissileImageDown;
@@ -48,35 +49,41 @@ namespace Tanks.Addetion_classes
 
         public void DefaultSettings()
         {
-            coordinateX = coordinateY = -50;
+            int defaultCoordinate = -50;
+            coordinateX = coordinateY = defaultCoordinate;
             DirectX = DirectY = 0;
         }
 
         public void Move()
         {
+            byte missileSpeed = 4;
+
             ChooseImageDiraction();
 
-            coordinateX += DirectX * 4;
-            coordinateY += DirectY * 4;
+            coordinateX += DirectX * missileSpeed;
+            coordinateY += DirectY * missileSpeed;
         }
 
         public void ChooseImageDiraction()
         {
             if (DirectX == 1)
             {
-                img = MissileImg.MissileImageRight;
+                img = missileImg.MissileImageRight;
             }
+
             if (DirectX == -1)
             {
-                img = MissileImg.MissileImageLeft;
+                img = missileImg.MissileImageLeft;
             }
+
             if (DirectY == 1)
             {
-                img = MissileImg.MissileImageDown;
+                img = missileImg.MissileImageDown;
             }
+
             if (DirectY == -1)
             {
-                img = MissileImg.MissileImageUp;
+                img = missileImg.MissileImageUp;
             }
         }
     }

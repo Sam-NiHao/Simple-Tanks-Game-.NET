@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using Tanks.Addetion_classes;//11111111111111111111111111111111111111
 
 namespace Tanks
 {
-    public delegate void Streep();// name!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public delegate void Strip();
     class Model
     {
-        public event Streep changeStatusStreep;
+        public event Strip changeStatusStreep;
         public GameStatus gameStatus;
 
         Random random;
@@ -21,7 +20,7 @@ namespace Tanks
 
         HeroTank heroTank;
         internal HeroTank HeroTank { get => heroTank; }
-        
+
         List<DestroyedTank> destroyedTanks;
         internal List<DestroyedTank> DestroyedTanks { get => destroyedTanks; }
 
@@ -31,12 +30,12 @@ namespace Tanks
         List<AbstractTank> enemyTanks;
         internal List<AbstractTank> EnemyTanks { get => enemyTanks; }
 
-
         int fieldSize, tanksAmount, starsAmount, pickedUpStars, gotStarPosition;
 
-        public int gameSpeed { get; } // field?? !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public int GameSpeed { get; }
 
-        public Wall wall { get; set; }// свойство??   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Wall wall;
+        internal Wall Wall { get => wall; }
 
         public Model(int fieldSize, int tanksAmount, int starsAmount, int gameSpeed)
         {
@@ -45,7 +44,7 @@ namespace Tanks
             this.fieldSize = fieldSize;
             this.tanksAmount = tanksAmount;
             this.starsAmount = starsAmount;
-            this.gameSpeed = gameSpeed;
+            this.GameSpeed = gameSpeed;
 
             NewGame();
         }
@@ -61,8 +60,8 @@ namespace Tanks
 
             while (Stars.Count < starsAmount + pickedUpStars)
             {
-                starCoordinateX = random.Next(6) * 80;//переименовать 6 и 80
-                starCoordinateY = random.Next(6) * 80;//переименовать 6 и 80
+                starCoordinateX = GetRandomCoordinate();
+                starCoordinateY = GetRandomCoordinate();
 
                 bool flag = true;
 
@@ -82,6 +81,14 @@ namespace Tanks
             }
         }
 
+        private int GetRandomCoordinate()
+        {
+            int amountWallRows = 6;
+            int distanceBetweenWallCoordinates = 80;
+
+            return random.Next(amountWallRows) * distanceBetweenWallCoordinates;
+        }
+
         private void CreateEnemyTanks()
         {
             int enemyTankCoordinateX, enemyTankCoordinateY;
@@ -90,11 +97,11 @@ namespace Tanks
             {
                 if (EnemyTanks.Count == 0)
                 {
-                    EnemyTanks.Add(new HunterTank(fieldSize, random.Next(6) * 80, random.Next(6) * 80)); //переименовать 6 и 80
+                    EnemyTanks.Add(new HunterTank(fieldSize, GetRandomCoordinate(), GetRandomCoordinate()));
                 }
 
-                enemyTankCoordinateX = random.Next(6) * 80; //переименовать 6 и 80
-                enemyTankCoordinateY = random.Next(6) * 80; //переименовать 6 и 80
+                enemyTankCoordinateX = GetRandomCoordinate();
+                enemyTankCoordinateY = GetRandomCoordinate();
 
                 bool flag = true;
 
@@ -118,7 +125,7 @@ namespace Tanks
         {
             while (gameStatus == GameStatus.playing)
             {
-                Thread.Sleep(gameSpeed);
+                Thread.Sleep(GameSpeed);
 
                 MoveAllObjectsOnField();
 
@@ -152,20 +159,29 @@ namespace Tanks
 
         private void PickUpStars()
         {
+            int trophyStarCoordinateX = 48;
+            int trophyStarCoordinateY = 530;
+            int amountStarsNeedToWin = 8;
+
             for (int i = 0; i < Stars.Count; i++)
             {
                 if (HeroTank.CoordinateX == Stars[i].CoordinateX && HeroTank.CoordinateY == Stars[i].CoordinateY)
                 {
-                    Stars[i] = new Star(gotStarPosition -= 45, 530); //переименовать 45, 530
+                    Stars[i] = new Star(gotStarPosition -= trophyStarCoordinateX, trophyStarCoordinateY);
                     CreateStars(++pickedUpStars);
                 }
 
-                if (pickedUpStars > 5) //переименовать 5
-                {
-                    gameStatus = GameStatus.winner;
+                CheckAmountStars(amountStarsNeedToWin);
+            }
+        }
 
-                    changeStatusStreep?.Invoke();
-                }
+        private void CheckAmountStars(int amountStarsNeedToWin)
+        {
+            if (pickedUpStars > amountStarsNeedToWin)
+            {
+                gameStatus = GameStatus.winner;
+
+                changeStatusStreep?.Invoke();
             }
         }
 
@@ -173,18 +189,25 @@ namespace Tanks
         {
             for (int i = 0; i < EnemyTanks.Count; i++)
             {
-                if (
-                        (Math.Abs(EnemyTanks[i].CoordinateX - HeroTank.CoordinateX) <= 39 && (EnemyTanks[i].CoordinateY == HeroTank.CoordinateY)) //переименовать 39
-                        ||
-                        (Math.Abs(EnemyTanks[i].CoordinateY - HeroTank.CoordinateY) <= 39 && (EnemyTanks[i].CoordinateX == HeroTank.CoordinateX)) //переименовать 39
-                        ||
-                        (Math.Abs(EnemyTanks[i].CoordinateX - HeroTank.CoordinateX) <= 39 && Math.Abs(EnemyTanks[i].CoordinateY - HeroTank.CoordinateY) <= 39) //переименовать 39
-                    )
-                {
-                    gameStatus = GameStatus.loser;
+                CheckEnemyAndHeroTanksCoordinates(i);
+            }
+        }
 
-                    changeStatusStreep?.Invoke();
-                }
+        private void CheckEnemyAndHeroTanksCoordinates(int i)
+        {
+            int tnakSize = 39;
+
+            if (
+                 (Math.Abs(EnemyTanks[i].CoordinateX - HeroTank.CoordinateX) <= tnakSize && (EnemyTanks[i].CoordinateY == HeroTank.CoordinateY))
+                 ||
+                 (Math.Abs(EnemyTanks[i].CoordinateY - HeroTank.CoordinateY) <= tnakSize && (EnemyTanks[i].CoordinateX == HeroTank.CoordinateX))
+                 ||
+                 (Math.Abs(EnemyTanks[i].CoordinateX - HeroTank.CoordinateX) <= tnakSize && Math.Abs(EnemyTanks[i].CoordinateY - HeroTank.CoordinateY) <= tnakSize)
+               )
+            {
+                gameStatus = GameStatus.loser;
+
+                changeStatusStreep?.Invoke();
             }
         }
 
@@ -194,49 +217,50 @@ namespace Tanks
             {
                 for (int j = i + 1; j < EnemyTanks.Count; j++)
                 {
-                    if (
-                        (Math.Abs(EnemyTanks[i].CoordinateX - EnemyTanks[j].CoordinateX) <= 40 && (EnemyTanks[i].CoordinateY == EnemyTanks[j].CoordinateY)) //горизонтальная проверка //переименовать 40
-                        ||
-                        (Math.Abs(EnemyTanks[i].CoordinateY - EnemyTanks[j].CoordinateY) <= 40 && (EnemyTanks[i].CoordinateX == EnemyTanks[j].CoordinateX)) // вертикальная проверка
-                        ||
-                        (Math.Abs(EnemyTanks[i].CoordinateX - EnemyTanks[j].CoordinateX) <= 40 && Math.Abs(EnemyTanks[i].CoordinateY - EnemyTanks[j].CoordinateY) <= 40) // угловая проверка
-                      )
-                    //if (
-                    //    (Math.Abs(enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX) <= 40 && (enemyTanks[i].CoordinateY == enemyTanks[j].CoordinateY))
-                    //    ||
-                    //    (Math.Abs(enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY) <= 40 && (enemyTanks[i].CoordinateX == enemyTanks[j].CoordinateX))
-                    //    ||
-                    //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == 40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == 40) && (enemyTanks[i].DirectY == -1 || enemyTanks[i].DirectX == -1)
-                    //    ||
-                    //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == -40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == -40) && (enemyTanks[j].DirectY == -1 || enemyTanks[j].DirectX == -1)
-                    //    ||
-                    //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == 40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == 40) && (enemyTanks[i].DirectY == -1 || enemyTanks[i].DirectX == -1)
-                    //    ||
-                    //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == 40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == -40) && (enemyTanks[j].DirectY == -1 || enemyTanks[j].DirectX == 1)
-                    //    ||
-                    //    (enemyTanks[i].CoordinateX - enemyTanks[j].CoordinateX == -40 && enemyTanks[i].CoordinateY - enemyTanks[j].CoordinateY == 40) && (enemyTanks[i].DirectY == -1 || enemyTanks[i].DirectX == 1)
-                    //  )
-                    {
-                        EnemyTanks[i].ReverseMove();
-                        EnemyTanks[j].ReverseMove();
-                    }
+                    CheckEnemyTanksCoordinates(i, j);
                 }
             }
+        }
+
+        private void CheckEnemyTanksCoordinates(int i, int j)
+        {
+            int tnakSize = 40;
+
+            if (
+                  (Math.Abs(EnemyTanks[i].CoordinateX - EnemyTanks[j].CoordinateX) <= tnakSize && (EnemyTanks[i].CoordinateY == EnemyTanks[j].CoordinateY)) //горизонтальная проверка
+                  ||
+                  (Math.Abs(EnemyTanks[i].CoordinateY - EnemyTanks[j].CoordinateY) <= tnakSize && (EnemyTanks[i].CoordinateX == EnemyTanks[j].CoordinateX)) // вертикальная проверка
+                  ||
+                  (Math.Abs(EnemyTanks[i].CoordinateX - EnemyTanks[j].CoordinateX) <= tnakSize && Math.Abs(EnemyTanks[i].CoordinateY - EnemyTanks[j].CoordinateY) <= tnakSize) // угловая проверка
+               )
+            {
+                ReverseMoveForEnemyTanks(i, j);
+            }
+        }
+
+        private void ReverseMoveForEnemyTanks(int i, int j)
+        {
+            EnemyTanks[i].ReverseMove();
+            EnemyTanks[j].ReverseMove();
         }
 
         private void TryDestroyEnemyTank()
         {
             for (int i = 1; i < EnemyTanks.Count; i++)
             {
-                //if ((Missile.CoordinateX - EnemyTanks[i].CoordinateX) < 39 && (Missile.CoordinateY - EnemyTanks[i].CoordinateY) < 39
-                //    &&
-                //    (Missile.CoordinateX - EnemyTanks[i].CoordinateX) > 14 && (Missile.CoordinateY - EnemyTanks[i].CoordinateY) > 14)
-                if (Math.Abs(EnemyTanks[i].CoordinateX - Missile.CoordinateX) < 25 && Math.Abs(EnemyTanks[i].CoordinateY - Missile.CoordinateY) < 25) //переименовать 25
-                {
-                    DestroyedTanks.Add(new DestroyedTank(EnemyTanks[i].CoordinateX, EnemyTanks[i].CoordinateY));
-                    EnemyTanks.RemoveAt(i);
-                    missile.DefaultSettings();
-                }
+                CheckEnemyTanksAndMissileCoordinates(i);
+            }
+        }
+
+        private void CheckEnemyTanksAndMissileCoordinates(int i)
+        {
+            int enoughDistanceToKillTank = 25;
+
+            if (Math.Abs(EnemyTanks[i].CoordinateX - Missile.CoordinateX) < enoughDistanceToKillTank && Math.Abs(EnemyTanks[i].CoordinateY - Missile.CoordinateY) < enoughDistanceToKillTank)
+            {
+                DestroyedTanks.Add(new DestroyedTank(EnemyTanks[i].CoordinateX, EnemyTanks[i].CoordinateY));
+                EnemyTanks.RemoveAt(i);
+                missile.DefaultSettings();
             }
         }
 
@@ -246,7 +270,7 @@ namespace Tanks
             gotStarPosition = 500;
 
             missile = new Missile();
-            heroTank = new HeroTank(fieldSize);
+            heroTank = HeroTank.SingeltonMethod();
             enemyTanks = new List<AbstractTank>();
             stars = new List<Star>();
             awardImage = new AwardImage();

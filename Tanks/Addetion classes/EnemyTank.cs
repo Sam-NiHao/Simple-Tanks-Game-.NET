@@ -1,13 +1,10 @@
-﻿using System;
-using Tanks.Addetion_classes;
-
-namespace Tanks
+﻿namespace Tanks
 {
     class EnemyTank : AbstractTank
     {
-        EnemyTankImage tankImg = new EnemyTankImage();
+        EnemyTankImage enemyTankImg = new EnemyTankImage();
 
-        public EnemyTank(int fieldSize, int x, int y)
+        public EnemyTank(int fieldSize, int enemyTankCoordinateX, int enemyTankCoordinateY)
         {
             FieldSize = fieldSize;
 
@@ -15,27 +12,30 @@ namespace Tanks
 
             ChooseImageDiraction();
 
-            CoordinateX = x;
-            CoordinateY = y;
+            CoordinateX = enemyTankCoordinateX;
+            CoordinateY = enemyTankCoordinateY;
         }
 
         public override void ChooseImageDiraction()
         {
             if (DirectX == 1)
             {
-                Img = tankImg.TankImageRight;
+                Img = enemyTankImg.TankImageRight;
             }
+
             if (DirectX == -1)
             {
-                Img = tankImg.TankImageLeft;
+                Img = enemyTankImg.TankImageLeft;
             }
+
             if (DirectY == 1)
             {
-                Img = tankImg.TankImageDown;
+                Img = enemyTankImg.TankImageDown;
             }
+
             if (DirectY == -1)
             {
-                Img = tankImg.TankImageUp;
+                Img = enemyTankImg.TankImageUp;
             }
         }
     }

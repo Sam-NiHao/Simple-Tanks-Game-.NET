@@ -45,7 +45,7 @@
             this.buttonStartStop.Text = "Start | Stop";
             this.buttonStartStop.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonStartStop.UseVisualStyleBackColor = true;
-            this.buttonStartStop.Click += new System.EventHandler(this.ButtonStartStop_Click);
+            this.buttonStartStop.Click += new System.EventHandler(this.ButtonStartStopClick);
             this.buttonStartStop.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HeroTankHandling);
             // 
             // button1
@@ -86,8 +86,8 @@
             this.MaximizeBox = false;
             this.Name = "ControllerMainForm";
             this.Text = "Tanks";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControllerMainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControllerMainFormFormClosing);
+            this.Load += new System.EventHandler(this.MainFormLoad);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

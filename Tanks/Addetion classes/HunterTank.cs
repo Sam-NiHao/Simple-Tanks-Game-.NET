@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Tanks.Addetion_classes
+namespace Tanks
 {
     class HunterTank : AbstractTank
     {
         HunterTankImage hunterTankImg = new HunterTankImage();
 
-        public HunterTank(int fieldSize, int x, int y)
+        public HunterTank(int fieldSize, int hunterTankCoordinateX, int hunterTankCoordinateY)
         {
             FieldSize = fieldSize;
 
@@ -14,32 +14,41 @@ namespace Tanks.Addetion_classes
 
             ChooseImageDiraction();
 
-            CoordinateX = x;
-            CoordinateY = y;
+            CoordinateX = hunterTankCoordinateX;
+            CoordinateY = hunterTankCoordinateY;
         }
 
-        public void Turn(int heroTankCoordinateX, int heroTankCoordinateY)
+        public void Turn(int hunterTankCoordinateX, int hunterTankCoordinateY)
         {
             DirectX = DirectY = 0;
 
-            if (CoordinateX > heroTankCoordinateX)
+            if (CoordinateX > hunterTankCoordinateX)
             {
                 DirectX = -1;
             }
-            if (CoordinateX < heroTankCoordinateX)
+
+            if (CoordinateX < hunterTankCoordinateX)
             {
                 DirectX = 1;
             }
 
-            if (CoordinateY > heroTankCoordinateY)
+            if (CoordinateY > hunterTankCoordinateY)
             {
                 DirectY = -1;
             }
-            if (CoordinateY < heroTankCoordinateY)
+
+            if (CoordinateY < hunterTankCoordinateY)
             {
                 DirectY = 1;
             }
 
+            CheckDirectionNotEqualZero();
+
+            ChooseImageDiraction();
+        }
+
+        private void CheckDirectionNotEqualZero()
+        {
             if (DirectX != 0 && DirectY != 0)
             {
                 if (random.Next(5000) < 2500)
@@ -50,22 +59,22 @@ namespace Tanks.Addetion_classes
                 {
                     DirectY = 0;
                 }
-
             }
-
-            ChooseImageDiraction();
         }
 
-        public void Move(int heroTankCoordinateX, int heroTankCoordinateY)
+        public void Move(int hunterTankCoordinateX, int hunterTankCoordinateY)
         {
+            int distanceBetweenTanksCoordinates = 80;
+
             CoordinateX += DirectX;
             CoordinateY += DirectY;
 
-            if ((Math.IEEERemainder(CoordinateX, 80) == 0) && (Math.IEEERemainder(CoordinateY, 80) == 0)) // мы на перекрестке
+            if ((Math.IEEERemainder(CoordinateX, distanceBetweenTanksCoordinates) == 0) && (Math.IEEERemainder(CoordinateY, distanceBetweenTanksCoordinates) == 0)) // мы на перекрестке
             {
-                Turn(heroTankCoordinateX, heroTankCoordinateY);
+                Turn(hunterTankCoordinateX, hunterTankCoordinateY);
             }
-            Teleport();
+
+            TeleportThroughFieldBorders();
         }
 
         public override void ChooseImageDiraction()
@@ -74,14 +83,17 @@ namespace Tanks.Addetion_classes
             {
                 Img = hunterTankImg.HunterTankImageRight;
             }
+
             if (DirectX == -1)
             {
                 Img = hunterTankImg.HunterTankImageLeft;
             }
+
             if (DirectY == 1)
             {
                 Img = hunterTankImg.HunterTankImageDown;
             }
+
             if (DirectY == -1)
             {
                 Img = hunterTankImg.HunterTankImageUp;
